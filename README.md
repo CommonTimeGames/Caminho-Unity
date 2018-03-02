@@ -1,4 +1,4 @@
-# Caminho.NET #
+# Caminho-Unity #
 
 Caminho is a flexible, lightweight dialogue engine for games. 
 Written in Lua, it embeds easily into your game engine of choice,
