@@ -36,17 +36,17 @@ namespace CommonTimeGames.Caminho
                           string package = default(string),
                           string startNode = default(string))
         {
-
+            _engine.Start(dialogue, package, startNode);
         }
 
         public void Continue(int value = 1)
         {
-
+            _engine.Continue(value);
         }
 
         public void End()
         {
-
+            _engine.End();
         }
 
     }
