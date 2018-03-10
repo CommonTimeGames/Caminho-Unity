@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Caminho;
 
-namespace CommonTimeGames.NekoMaze.UI
+namespace CommonTimeGames.UI
 {
     public class DialogueScreen : MonoBehaviour
     {
@@ -17,8 +17,21 @@ namespace CommonTimeGames.NekoMaze.UI
         public float SpeedMultiplier = 0.5f;
 
         public GameObject Panel;
+
+        public GameObject DialoguePanel;
         public Text DialogueText;
         public Image ContinueIcon;
+
+        public GameObject ChoicePanel;
+        public GameObject ChoiceButtonPanel;
+        public Text ChoicePanelText;
+        public Image ChoiceContinueIcon;
+
+        public GameObject[] ChoiceButtons;
+        public Text[] ChoiceButtonText;
+
+        private Text _currentDialogueText;
+        private Image _currentContinueIcon;
 
         private string _dialogueText;
 
@@ -72,15 +85,16 @@ namespace CommonTimeGames.NekoMaze.UI
                 {
                     _dialogueString.Append(_dialogueText[_currentLetterIndex]);
                     _currentLetterIndex++;
-                    _letterTimer = accept ? LetterTime * SpeedMultiplier : LetterTime;
+                    _letterTimer = accept ?
+                        LetterTime * SpeedMultiplier : LetterTime;
                 }
 
-                DialogueText.text = _dialogueString.ToString();
-                ContinueIcon.color = Color.clear;
+                _currentDialogueText.text = _dialogueString.ToString();
+                _currentContinueIcon.color = Color.clear;
             }
             else
             {
-                ContinueIcon.color = Color.white;
+                _currentContinueIcon.color = Color.white;
 
                 if (acceptPressed)
                 {
@@ -135,6 +149,11 @@ namespace CommonTimeGames.NekoMaze.UI
             Instance.RefreshDialogueScreen();
         }
 
+        public void ChoicePressed(int value = 0)
+        {
+            Continue(value);
+        }
+
         private void RefreshDialogueScreen()
         {
             if (_engine.Status == CaminhoStatus.Active)
@@ -143,10 +162,39 @@ namespace CommonTimeGames.NekoMaze.UI
 
                 if (_engine.Current.Type == CaminhoNodeType.Text)
                 {
+                    _currentDialogueText = DialogueText;
+                    _currentContinueIcon = ContinueIcon;
+
+                    DialoguePanel.SetActive(true);
+                    ChoicePanel.SetActive(false);
+                    ChoiceButtonPanel.SetActive(false);
+
                     ShowText(_engine.Current.Text);
                 }
                 else if (_engine.Current.Type == CaminhoNodeType.Choice)
                 {
+                    _currentDialogueText = ChoicePanelText;
+                    _currentContinueIcon = ChoiceContinueIcon;
+
+                    DialoguePanel.SetActive(false);
+                    ChoicePanel.SetActive(true);
+                    ChoiceButtonPanel.SetActive(true);
+
+                    for (int i = 0; i < ChoiceButtonText.Length; i++)
+                    {
+                        if (i < _engine.Current.Choices.Length)
+                        {
+                            ChoiceButtons[i].SetActive(true);
+
+                            ChoiceButtonText[i].text =
+                                _engine.Current.Choices[i].Text;
+                        }
+
+                        else
+                        {
+                            ChoiceButtons[i].SetActive(false);
+                        }
+                    }
                     ShowText(_engine.Current.Text);
                 }
             }
