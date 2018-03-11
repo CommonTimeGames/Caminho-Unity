@@ -18,7 +18,7 @@ public class SampleDialogueButtons : MonoBehaviour
                 break;
 
             case 2:
-                DialogueScreen.StartDialogue(name: "test");
+                DialogueScreen.StartDialogue(name: "romance");
                 break;
         }
     }

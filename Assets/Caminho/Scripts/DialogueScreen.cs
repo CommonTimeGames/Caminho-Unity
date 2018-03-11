@@ -61,7 +61,6 @@ namespace CommonTimeGames.UI
             _engine = new CaminhoEngine();
             _engine.Initialize();
             IsShowing = false;
-            StartDialogue("test");
         }
 
         // Update is called once per frame
@@ -145,7 +144,7 @@ namespace CommonTimeGames.UI
 
         public static void Continue(int value = 0)
         {
-            Instance._engine.Continue();
+            Instance._engine.Continue(value + 1);
             Instance.RefreshDialogueScreen();
         }
 
@@ -169,7 +168,7 @@ namespace CommonTimeGames.UI
                     ChoicePanel.SetActive(false);
                     ChoiceButtonPanel.SetActive(false);
 
-                    ShowText(_engine.Current.Text);
+                    ShowText(_engine.Current.DisplayText);
                 }
                 else if (_engine.Current.Type == CaminhoNodeType.Choice)
                 {
@@ -195,7 +194,8 @@ namespace CommonTimeGames.UI
                             ChoiceButtons[i].SetActive(false);
                         }
                     }
-                    ShowText(_engine.Current.Text);
+
+                    ShowText(_engine.Current.DisplayText);
                 }
             }
             else if (_engine.Status == CaminhoStatus.Inactive)

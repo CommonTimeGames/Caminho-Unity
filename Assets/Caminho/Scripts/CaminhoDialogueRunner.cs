@@ -14,15 +14,6 @@ namespace CommonTimeGames.Caminho
         {
             _engine = new CaminhoEngine();
             _engine.Initialize();
-
-            _engine.Start("test");
-            Debug.Log(_engine.Current.Text); //"Welcome to Caminho-Unity!"
-
-            _engine.Continue();
-            Debug.Log(_engine.Current.Text); //"If you're reading this then the dialogue loaded successfully."
-
-            _engine.Continue();
-            Debug.Log(_engine.Current.Text); //"Good bye!"
         }
 
         // Update is called once per frame
