@@ -73,8 +73,13 @@ namespace CommonTimeGames.UI
                 return;
             }
 
-            var accept = Input.GetKey(KeyCode.Return);
-            var acceptPressed = Input.GetKeyDown(KeyCode.Return);
+            var accept =
+                Input.GetKey(KeyCode.Return)
+                     || Input.GetKey(KeyCode.Tab);
+
+            var acceptPressed =
+                Input.GetKeyDown(KeyCode.Return)
+                     || Input.GetKeyDown(KeyCode.Tab);
 
             if (_dialogueString.Length < _dialogueText.Length)
             {
@@ -95,7 +100,8 @@ namespace CommonTimeGames.UI
             {
                 _currentContinueIcon.color = Color.white;
 
-                if (acceptPressed)
+                if (acceptPressed &&
+                    _engine.Current.Type != CaminhoNodeType.Choice)
                 {
                     Continue();
                 }
