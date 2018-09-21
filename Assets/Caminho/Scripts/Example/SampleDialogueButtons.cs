@@ -10,15 +10,15 @@ public class SampleDialogueButtons : MonoBehaviour
         switch (index)
         {
             case 0:
-                DialogueScreen.StartDialogue(name: "test");
+                DialogueScreen.StartDialogue(package: "test", name: "default");
                 break;
 
             case 1:
-                DialogueScreen.StartDialogue(name: "test", package: "dialogue2");
+                DialogueScreen.StartDialogue(package: "test", name: "dialogue2");
                 break;
 
             case 2:
-                DialogueScreen.StartDialogue(name: "romance");
+                DialogueScreen.StartDialogue(package: "romance", name: "default");
                 break;
         }
     }

@@ -10,7 +10,7 @@ namespace Caminho.Loaders
 
     public interface ICaminhoDialogueLoader
     {
-        Stream LoadDialogue(string file);
+        Stream LoadPackage(string file);
     }
 
     public interface ICaminhoTextLoader

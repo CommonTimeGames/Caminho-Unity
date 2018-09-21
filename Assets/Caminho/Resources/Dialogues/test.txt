@@ -4,7 +4,7 @@ local d = Dialogue:new()
 
 d:seq{
   start=true,
-  name="test",
+  id="test",
   {text="Welcome to Caminho-Unity!"},
   {text="If you're reading this then the dialogue loaded successfully."},
   {text="Good bye!"}
@@ -13,13 +13,13 @@ d:seq{
 ch={{text="Yes", next="yesSelected"}, 
     {text="No", next="noSelected"}}
 
-d:add{name="choice",
-      package="dialogue2", 
+d:add{id="choice",
+      name="dialogue2", 
       text="Is a hot dog a sandwich?",
       choices=ch, 
       start=true}
       
-d:add{package="dialogue2", name="yesSelected", text="I'm not sure I agree..."}
-d:add{package="dialogue2", name="noSelected", text="I don't think so either!"}
+d:add{name="dialogue2", id="yesSelected", text="I'm not sure I agree..."}
+d:add{name="dialogue2", id="noSelected", text="I don't think so either!"}
 
 return d

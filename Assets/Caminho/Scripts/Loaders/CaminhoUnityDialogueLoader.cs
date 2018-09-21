@@ -15,7 +15,7 @@ public class CaminhoUnityDialogueLoader : ICaminhoDialogueLoader
         DialoguePath = "Dialogues";
     }
 
-    Stream ICaminhoDialogueLoader.LoadDialogue(string file)
+    Stream ICaminhoDialogueLoader.LoadPackage(string file)
     {
         var assetName = string.Format("{0}/{1}", DialoguePath, file);
 

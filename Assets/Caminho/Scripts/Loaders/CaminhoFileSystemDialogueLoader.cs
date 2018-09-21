@@ -12,7 +12,7 @@ namespace Caminho.Loaders
             SearchPaths = new string[] { "?", "?.lua" };
         }
 
-        public Stream LoadDialogue(string file)
+        public Stream LoadPackage(string file)
         {
             if (SearchPaths == null || SearchPaths.Length == 0)
             {

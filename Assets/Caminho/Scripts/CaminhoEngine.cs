@@ -139,7 +139,7 @@ namespace Caminho
 
         private DynValue LoadDialogue(string name)
         {
-            using (var scriptStream = DialogueLoader.LoadDialogue(name))
+            using (var scriptStream = DialogueLoader.LoadPackage(name))
             {
                 return scriptStream != null ?
                     _scriptContext.LoadStream(scriptStream) : DynValue.Nil;
